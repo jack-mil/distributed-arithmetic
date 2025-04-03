@@ -1,0 +1,7 @@
+*.jou
+*.log
+*_project
+.
+run/transcript
+run/vsim.wlf
+**/work/**
