@@ -1,7 +1,9 @@
 *.jou
 *.log
 *_project
-.
+
+.Xil/
+*pid*.str
 run/transcript
 run/vsim.wlf
 **/work/**
