@@ -8,7 +8,7 @@ check:
   fd --extension vhd --exec-batch vsg -c .vsg-style.yml -f {}
 
 diff:
-  diff <( head -n 100 run/output_updated.txt ) <( head -n 100 run/output_updated_ref.txt ) --suppress-common-lines --report-identical-file
+  diff run/output.txt run/output_ref.txt --unified --color=always --strip-trailing-cr --suppress-common-lines --report-identical-file
 
 open:
   vivado -nojournal -nolog lab04_project/lab04_project.xpr

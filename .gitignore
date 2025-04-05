@@ -1,7 +1,7 @@
 *.jou
 *.log
 *_project
-
+src/da_orig.vhd
 .Xil/
 *pid*.str
 run/transcript

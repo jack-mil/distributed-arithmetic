@@ -155,9 +155,11 @@ begin
           data_lut_shift := resize(data_lut, data_lut_shift'length);
           data_lut_shift := shift_left(data_lut_shift, to_integer(count_p1));
           if (count_p1 = "00") then
-            acc_p2 <= data_lut_shift;
+            acc_p2 <= data_lut_shift; -- reset old data
+          elsif (count_p1 = "11") then
+            acc_p2 <= acc_p2 - data_lut_shift; -- reverse sign of final sum
           else
-            acc_p2 <= acc_p2 + data_lut_shift;
+            acc_p2 <= acc_p2 + data_lut_shift; -- normal accumulate for middle cycles
           end if;
         end if;
       end if;

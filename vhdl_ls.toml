@@ -5,3 +5,4 @@ standard = "2008"
 # File names are either absolute or relative to the parent folder of the vhdl_ls.toml file
 [libraries]
   lab04.files = ['src/*.vhd', 'tb/*.vhd']
+  lab04.exclude = [ 'src/da_orig.vhd' ]
