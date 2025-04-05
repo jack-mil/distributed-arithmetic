@@ -76,10 +76,9 @@ architecture arch of da is
   signal data_lut  : signed(4 downto 0);          -- look-up data
 
   -- --------- Stage 2 --------
-  signal acc_sig     : signed(9 downto 0);
-  signal acc_p2      : signed(9 downto 0) := (others => '0');
-  signal valid_p2    : std_logic          := '0';
-  signal count_equ_3 : std_logic;
+  signal acc_p2      : signed(9 downto 0) := (others => '0'); -- output accumulator
+  signal valid_p2    : std_logic          := '0'; -- second stage (output) complete when '1'
+  signal count_equ_3 : std_logic;                 -- internal flag
 
 begin
 
