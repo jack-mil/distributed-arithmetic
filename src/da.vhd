@@ -133,7 +133,9 @@ begin
   -- prevent more input until N (4) cycles of valid data
   GEN_STALL : process (valid_p1, count_p1)
   begin
-    if valid_p1='1' and count_p1 /= "00" then -- starting
+    if count_p1 = "11" then
+      stall_p1 <= '0';
+    elsif valid_p1='1' then -- starting
       stall_p1 <= '1';
     else
       stall_p1 <= '0';
@@ -143,20 +145,29 @@ begin
   -- --------- Stage 2 --------
 
   -- Generating the addr
-  process (count_p1, data_lut, acc_p2)
-    variable addr : unsigned(3 downto 0);
-  begin
-    case count_p1 is
-      when "00" => addr := data_3_p1(0) & data_2_p1(0) & data_1_p1(0) & data_0_p1(0);
-      when "01" => addr := data_3_p1(1) & data_2_p1(1) & data_1_p1(1) & data_0_p1(1);
-      when "10" => addr := data_3_p1(2) & data_2_p1(2) & data_1_p1(2) & data_0_p1(2);
-      when "11" => addr := data_3_p1(3) & data_2_p1(3) & data_1_p1(3) & data_0_p1(3);
-      when others => null; -- shouldn't happen
-    end case;
-    data_lut <= ROM(addr);
-    -- acc_p2 <= acc_p2 + data_lut;
 
-  end process;
+  with count_p1 select
+    addr <= data_3_p1(0) & data_2_p1(0) & data_1_p1(0) & data_0_p1(0) when "00",
+            data_3_p1(1) & data_2_p1(1) & data_1_p1(1) & data_0_p1(1) when "01",
+            data_3_p1(2) & data_2_p1(2) & data_1_p1(2) & data_0_p1(2) when "10",
+            data_3_p1(3) & data_2_p1(3) & data_1_p1(3) & data_0_p1(3) when "11",
+            (others => '0') when others;
+
+  -- process (count_p1, data_lut, acc_p2)
+  --   -- variable addr_v : unsigned(3 downto 0);
+  -- begin
+  --   case count_p1 is
+  --     when "00" => addr <= data_3_p1(0) & data_2_p1(0) & data_1_p1(0) & data_0_p1(0);
+  --     when "01" => addr <= data_3_p1(1) & data_2_p1(1) & data_1_p1(1) & data_0_p1(1);
+  --     when "10" => addr <= data_3_p1(2) & data_2_p1(2) & data_1_p1(2) & data_0_p1(2);
+  --     when "11" => addr <= data_3_p1(3) & data_2_p1(3) & data_1_p1(3) & data_0_p1(3);
+  --     when others => null; -- shouldn't happen
+  --   end case;
+  --   -- addr <= addr_v;
+  --   -- data_lut <= ROM(addr);
+  --   -- acc_p2 <= acc_p2 + data_lut;
+
+  -- end process;
 
   -- we use a dedicated signal here because the conversion from boolean to std_logic is bit complicated
   -- in VHDL for the '*' line below ('*' line ???)
