@@ -7,13 +7,16 @@ _default:
   @just --list
 
 fmt:
-  fd --extension vhd --exec-batch vsg --fix -c .vsg-style.yml -f {}
+  fd --extension vhd --exec-batch vsg --fix -c .vsg-style.yml -f {} \;
 
 check:
-  fd --extension vhd --exec-batch vsg -c .vsg-style.yml -f {}
+  fd --extension vhd --exec-batch vsg -c .vsg-style.yml -f {} \;
 
 diff:
   diff run/output.txt run/output_ref.txt --unified --color=always --strip-trailing-cr --suppress-common-lines --report-identical-file
+
+report:
+  fd "^.*_utilization_placed|^.*power_routed|^.*_timing_summary_routed" --extension rpt --no-ignore --exec-batch cp {} ./report \;
 
 build:
   source ./env.sh && vivado -nojournal -nolog -notrace -mode batch -source ./*_project.tcl
