@@ -1,4 +1,15 @@
 {
-    "editor.fontLigatures": "'zero', 'cv02', 'cv20', 'cv30','ss03', 'ss04', 'ss05'",
-    "vhdlls.languageServer": "systemPath"
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        ".Xil/": true
+    },
+    "[vhdl]": {
+        "files.insertFinalNewline": true,
+        "files.encoding": "iso88591", // https://www.sigasi.com/tech/vhdl-file-encoding/
+        "editor.tabSize": 2,
+    },
 }
