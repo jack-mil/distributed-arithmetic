@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="2,310.001 ns"></ZoomEndTime>
+      <ZoomStartTime time="18.334 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,168.335 ns"></ZoomEndTime>
       <Cursor1Time time="210.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="108"></ValueColumnWidth>
+      <ValueColumnWidth column_width="104"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="14" />
+   <WVObjectSize size="13" />
    <wvobject fp_name="group72" type="group">
       <obj_property name="label">Interface</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -37,21 +37,29 @@
          <obj_property name="ElementShortName">DATA_IN_0[3:0]</obj_property>
          <obj_property name="ObjectShortName">DATA_IN_0[3:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
       <wvobject fp_name="/TB_DA/DUT/DATA_IN_1" type="array">
          <obj_property name="ElementShortName">DATA_IN_1[3:0]</obj_property>
          <obj_property name="ObjectShortName">DATA_IN_1[3:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
       <wvobject fp_name="/TB_DA/DUT/DATA_IN_2" type="array">
          <obj_property name="ElementShortName">DATA_IN_2[3:0]</obj_property>
          <obj_property name="ObjectShortName">DATA_IN_2[3:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
       <wvobject fp_name="/TB_DA/DUT/DATA_IN_3" type="array">
          <obj_property name="ElementShortName">DATA_IN_3[3:0]</obj_property>
          <obj_property name="ObjectShortName">DATA_IN_3[3:0]</obj_property>
          <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
       <wvobject fp_name="/TB_DA/DUT/IN_VALID" type="logic">
          <obj_property name="ElementShortName">IN_VALID</obj_property>
@@ -153,11 +161,6 @@
    <wvobject fp_name="/TB_DA/DUT/acc_p2" type="array">
       <obj_property name="ElementShortName">acc_p2[9:0]</obj_property>
       <obj_property name="ObjectShortName">acc_p2[9:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/TB_DA/DUT/acc_sig" type="array">
-      <obj_property name="ElementShortName">acc_sig[9:0]</obj_property>
-      <obj_property name="ObjectShortName">acc_sig[9:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
 </wave_config>

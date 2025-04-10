@@ -31,13 +31,13 @@ end entity da;
 architecture arch of da is
 
   -- ----------------- Define Internal Signals -----------------
-  -- --------- ROM ----------
   -- A0=7, A1=3, A2=-8, A3=-5
   constant A0 : integer := 7;
   constant A1 : integer := 3;
   constant A2 : integer := -8;
   constant A3 : integer := -5;
 
+  -- --------- ROM LUT ----------
   function ROM(addr : unsigned(3 downto 0)) return signed is
     variable result : integer;
   begin
@@ -142,7 +142,9 @@ begin
   count_equ_3 <= '1' when count_p1 = to_unsigned(3, count_p1'length) else
                  '0';
 
-  DATA_OUT_p : process (CLK, RST) is
+  -- Perform the shift and accumulate operation
+  -- to generate the output signal
+  SHIFT_AND_SUM : process (CLK, RST) is
     variable data_lut_shift : signed(9 downto 0);
   begin
       if rising_edge(CLK) then
@@ -162,7 +164,7 @@ begin
           end if;
         end if;
       end if;
-  end process DATA_OUT_p;
+  end process SHIFT_AND_SUM;
 
   -- --------- Output --------
   NEXT_IN   <= not stall_p1;
