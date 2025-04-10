@@ -5,7 +5,7 @@ standard = "2008"
 # File names are either absolute or relative to the parent folder of the vhdl_ls.toml file
 [libraries]
   lab04.files   = ['src/*.vhd', 'tb/*.vhd']
-  lab04.exclude = ['src/da_orig.vhd']
+  lab04.exclude = ['src/da_orig.vhd','report/*']
 
   # Libraries can be marked as third-party to disable some analysis warnings, such as unused declarations
   XPM.files          = ['C:\Xilinx\Vivado\2024.2\data\ip\xpm\xpm_VCOMP.vhd']
