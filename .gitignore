@@ -1,7 +1,13 @@
+# project specific
+src/da_orig.vhd
+report/*.zip
+report/*.pdf
+report/*.docx
+
 *.jou
 *.log
 *_project
-src/da_orig.vhd
+
 .Xil/
 *pid*.str
 run/transcript

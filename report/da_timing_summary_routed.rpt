@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Thu Apr 10 09:57:45 2025
+| Date         : Tue Apr 15 21:29:11 2025
 | Host         : chonkpad running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file da_timing_summary_routed.rpt -pb da_timing_summary_routed.pb -rpx da_timing_summary_routed.rpx -warn_on_violation
 | Design       : da
@@ -29,11 +29,11 @@ Timing Summary Report
   Merge Timing Exceptions                    :  Yes
   Inter-SLR Compensation                     :  Conservative
 
-  Corner  Analyze    Analyze
-  Name    Max Paths  Min Paths
-  ------  ---------  ---------
-  Slow    Yes        Yes
-  Fast    Yes        Yes
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
 
 
 ------------------------------------------------------------------------------------------------
@@ -41,9 +41,9 @@ Timing Summary Report
 | ------------------
 ------------------------------------------------------------------------------------------------
 
-Rule       Severity  Description                    Violations
----------  --------  -----------------------------  ----------
-TIMING-18  Warning   Missing input or output delay  30
+Rule       Severity  Description                    Violations  
+---------  --------  -----------------------------  ----------  
+TIMING-18  Warning   Missing input or output delay  30          
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
 
@@ -140,9 +140,9 @@ Table of Contents
 | ---------------------
 ------------------------------------------------------------------------------------------------
 
-    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints
-    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------
-      4.810        0.000                      0                   30        0.203        0.000                      0                   30        4.500        0.000                       0                    31
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+      4.810        0.000                      0                   30        0.203        0.000                      0                   30        4.500        0.000                       0                    31  
 
 
 All user specified timing constraints are met.
@@ -155,7 +155,7 @@ All user specified timing constraints are met.
 
 Clock      Waveform(ns)       Period(ns)      Frequency(MHz)
 -----      ------------       ----------      --------------
-clk_pin_p  {0.000 5.000}      10.000          100.000
+clk_pin_p  {0.000 5.000}      10.000          100.000         
 
 
 ------------------------------------------------------------------------------------------------
@@ -163,9 +163,9 @@ clk_pin_p  {0.000 5.000}      10.000          100.000
 | -----------------
 ------------------------------------------------------------------------------------------------
 
-Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints
------             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------
-clk_pin_p           4.810        0.000                      0                   30        0.203        0.000                      0                   30        4.500        0.000                       0                    31
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+clk_pin_p           4.810        0.000                      0                   30        0.203        0.000                      0                   30        4.500        0.000                       0                    31  
 
 
 ------------------------------------------------------------------------------------------------
@@ -173,8 +173,8 @@ clk_pin_p           4.810        0.000                      0                   
 | -----------------
 ------------------------------------------------------------------------------------------------
 
-From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints
-----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
 
 
 ------------------------------------------------------------------------------------------------
@@ -182,8 +182,8 @@ From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS
 | -----------------------
 ------------------------------------------------------------------------------------------------
 
-Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints
-----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
 
 
 ------------------------------------------------------------------------------------------------
@@ -191,8 +191,8 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 | -----------------------
 ------------------------------------------------------------------------------------------------
 
-Path Group    From Clock    To Clock
-----------    ----------    --------
+Path Group    From Clock    To Clock    
+----------    ----------    --------    
 
 
 ------------------------------------------------------------------------------------------------
@@ -200,10 +200,10 @@ Path Group    From Clock    To Clock
 | ------------------------
 ------------------------------------------------------------------------------------------------
 
-Path Group    From Clock    To Clock
-----------    ----------    --------
-(none)        clk_pin_p
-(none)                      clk_pin_p
+Path Group    From Clock    To Clock    
+----------    ----------    --------    
+(none)        clk_pin_p                   
+(none)                      clk_pin_p     
 
 
 ------------------------------------------------------------------------------------------------
@@ -235,7 +235,7 @@ Slack (MET) :             4.810ns  (required time - arrival time)
   Data Path Delay:        5.230ns  (logic 2.117ns (40.479%)  route 3.113ns (59.521%))
   Logic Levels:           6  (CARRY4=3 LUT4=2 LUT6=1)
   Clock Path Skew:        0.000ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.268ns = ( 14.268 - 10.000 )
+    Destination Clock Delay (DCD):    4.268ns = ( 14.268 - 10.000 ) 
     Source Clock Delay      (SCD):    4.626ns
     Clock Pessimism Removal (CPR):    0.358ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -247,7 +247,7 @@ Slack (MET) :             4.810ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -277,7 +277,7 @@ Slack (MET) :             4.810ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                     10.000    10.000 r
+                                                     10.000    10.000 r  
     M18                                               0.000    10.000 r  CLK (IN)
                          net (fo=0)                   0.000    10.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805    10.805 r  CLK_IBUF_inst/O
@@ -285,14 +285,14 @@ Slack (MET) :             4.810ns  (required time - arrival time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    12.764 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          1.504    14.268    CLK_IBUF_BUFG
     SLICE_X0Y23          FDRE                                         r  acc_p2_reg[9]/C
-                         clock pessimism              0.358    14.626
-                         clock uncertainty           -0.035    14.591
+                         clock pessimism              0.358    14.626    
+                         clock uncertainty           -0.035    14.591    
     SLICE_X0Y23          FDRE (Setup_fdre_C_D)        0.075    14.666    acc_p2_reg[9]
   -------------------------------------------------------------------
-                         required time                         14.666
-                         arrival time                          -9.856
+                         required time                         14.666    
+                         arrival time                          -9.856    
   -------------------------------------------------------------------
-                         slack                                  4.810
+                         slack                                  4.810    
 
 Slack (MET) :             5.055ns  (required time - arrival time)
   Source:                 count_p1_reg[0]/C
@@ -305,7 +305,7 @@ Slack (MET) :             5.055ns  (required time - arrival time)
   Data Path Delay:        4.964ns  (logic 2.001ns (40.312%)  route 2.963ns (59.688%))
   Logic Levels:           5  (CARRY4=2 LUT4=2 LUT6=1)
   Clock Path Skew:        -0.021ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.269ns = ( 14.269 - 10.000 )
+    Destination Clock Delay (DCD):    4.269ns = ( 14.269 - 10.000 ) 
     Source Clock Delay      (SCD):    4.626ns
     Clock Pessimism Removal (CPR):    0.336ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -317,7 +317,7 @@ Slack (MET) :             5.055ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -344,7 +344,7 @@ Slack (MET) :             5.055ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                     10.000    10.000 r
+                                                     10.000    10.000 r  
     M18                                               0.000    10.000 r  CLK (IN)
                          net (fo=0)                   0.000    10.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805    10.805 r  CLK_IBUF_inst/O
@@ -352,14 +352,14 @@ Slack (MET) :             5.055ns  (required time - arrival time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    12.764 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          1.505    14.269    CLK_IBUF_BUFG
     SLICE_X0Y22          FDRE                                         r  acc_p2_reg[5]/C
-                         clock pessimism              0.336    14.605
-                         clock uncertainty           -0.035    14.570
+                         clock pessimism              0.336    14.605    
+                         clock uncertainty           -0.035    14.570    
     SLICE_X0Y22          FDRE (Setup_fdre_C_D)        0.075    14.645    acc_p2_reg[5]
   -------------------------------------------------------------------
-                         required time                         14.645
-                         arrival time                          -9.590
+                         required time                         14.645    
+                         arrival time                          -9.590    
   -------------------------------------------------------------------
-                         slack                                  5.055
+                         slack                                  5.055    
 
 Slack (MET) :             5.061ns  (required time - arrival time)
   Source:                 count_p1_reg[0]/C
@@ -372,7 +372,7 @@ Slack (MET) :             5.061ns  (required time - arrival time)
   Data Path Delay:        4.958ns  (logic 1.985ns (40.038%)  route 2.973ns (59.962%))
   Logic Levels:           5  (CARRY4=2 LUT4=2 LUT6=1)
   Clock Path Skew:        -0.021ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.269ns = ( 14.269 - 10.000 )
+    Destination Clock Delay (DCD):    4.269ns = ( 14.269 - 10.000 ) 
     Source Clock Delay      (SCD):    4.626ns
     Clock Pessimism Removal (CPR):    0.336ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -384,7 +384,7 @@ Slack (MET) :             5.061ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -411,7 +411,7 @@ Slack (MET) :             5.061ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                     10.000    10.000 r
+                                                     10.000    10.000 r  
     M18                                               0.000    10.000 r  CLK (IN)
                          net (fo=0)                   0.000    10.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805    10.805 r  CLK_IBUF_inst/O
@@ -419,14 +419,14 @@ Slack (MET) :             5.061ns  (required time - arrival time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    12.764 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          1.505    14.269    CLK_IBUF_BUFG
     SLICE_X0Y22          FDRE                                         r  acc_p2_reg[7]/C
-                         clock pessimism              0.336    14.605
-                         clock uncertainty           -0.035    14.570
+                         clock pessimism              0.336    14.605    
+                         clock uncertainty           -0.035    14.570    
     SLICE_X0Y22          FDRE (Setup_fdre_C_D)        0.075    14.645    acc_p2_reg[7]
   -------------------------------------------------------------------
-                         required time                         14.645
-                         arrival time                          -9.584
+                         required time                         14.645    
+                         arrival time                          -9.584    
   -------------------------------------------------------------------
-                         slack                                  5.061
+                         slack                                  5.061    
 
 Slack (MET) :             5.280ns  (required time - arrival time)
   Source:                 count_p1_reg[0]/C
@@ -439,7 +439,7 @@ Slack (MET) :             5.280ns  (required time - arrival time)
   Data Path Delay:        4.713ns  (logic 1.973ns (41.859%)  route 2.740ns (58.141%))
   Logic Levels:           6  (CARRY4=3 LUT4=2 LUT6=1)
   Clock Path Skew:        0.000ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.268ns = ( 14.268 - 10.000 )
+    Destination Clock Delay (DCD):    4.268ns = ( 14.268 - 10.000 ) 
     Source Clock Delay      (SCD):    4.626ns
     Clock Pessimism Removal (CPR):    0.358ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -451,7 +451,7 @@ Slack (MET) :             5.280ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -481,7 +481,7 @@ Slack (MET) :             5.280ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                     10.000    10.000 r
+                                                     10.000    10.000 r  
     M18                                               0.000    10.000 r  CLK (IN)
                          net (fo=0)                   0.000    10.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805    10.805 r  CLK_IBUF_inst/O
@@ -489,14 +489,14 @@ Slack (MET) :             5.280ns  (required time - arrival time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    12.764 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          1.504    14.268    CLK_IBUF_BUFG
     SLICE_X0Y23          FDRE                                         r  acc_p2_reg[8]/C
-                         clock pessimism              0.358    14.626
-                         clock uncertainty           -0.035    14.591
+                         clock pessimism              0.358    14.626    
+                         clock uncertainty           -0.035    14.591    
     SLICE_X0Y23          FDRE (Setup_fdre_C_D)        0.029    14.620    acc_p2_reg[8]
   -------------------------------------------------------------------
-                         required time                         14.620
-                         arrival time                          -9.339
+                         required time                         14.620    
+                         arrival time                          -9.339    
   -------------------------------------------------------------------
-                         slack                                  5.280
+                         slack                                  5.280    
 
 Slack (MET) :             5.284ns  (required time - arrival time)
   Source:                 count_p1_reg[0]/C
@@ -509,7 +509,7 @@ Slack (MET) :             5.284ns  (required time - arrival time)
   Data Path Delay:        4.691ns  (logic 1.879ns (40.054%)  route 2.812ns (59.946%))
   Logic Levels:           5  (CARRY4=2 LUT4=2 LUT6=1)
   Clock Path Skew:        -0.021ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.269ns = ( 14.269 - 10.000 )
+    Destination Clock Delay (DCD):    4.269ns = ( 14.269 - 10.000 ) 
     Source Clock Delay      (SCD):    4.626ns
     Clock Pessimism Removal (CPR):    0.336ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -521,7 +521,7 @@ Slack (MET) :             5.284ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -548,7 +548,7 @@ Slack (MET) :             5.284ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                     10.000    10.000 r
+                                                     10.000    10.000 r  
     M18                                               0.000    10.000 r  CLK (IN)
                          net (fo=0)                   0.000    10.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805    10.805 r  CLK_IBUF_inst/O
@@ -556,14 +556,14 @@ Slack (MET) :             5.284ns  (required time - arrival time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    12.764 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          1.505    14.269    CLK_IBUF_BUFG
     SLICE_X0Y22          FDRE                                         r  acc_p2_reg[6]/C
-                         clock pessimism              0.336    14.605
-                         clock uncertainty           -0.035    14.570
+                         clock pessimism              0.336    14.605    
+                         clock uncertainty           -0.035    14.570    
     SLICE_X0Y22          FDRE (Setup_fdre_C_D)        0.031    14.601    acc_p2_reg[6]
   -------------------------------------------------------------------
-                         required time                         14.601
-                         arrival time                          -9.317
+                         required time                         14.601    
+                         arrival time                          -9.317    
   -------------------------------------------------------------------
-                         slack                                  5.284
+                         slack                                  5.284    
 
 Slack (MET) :             5.373ns  (required time - arrival time)
   Source:                 count_p1_reg[0]/C
@@ -576,7 +576,7 @@ Slack (MET) :             5.373ns  (required time - arrival time)
   Data Path Delay:        4.599ns  (logic 1.859ns (40.418%)  route 2.740ns (59.582%))
   Logic Levels:           5  (CARRY4=2 LUT4=2 LUT6=1)
   Clock Path Skew:        -0.021ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.269ns = ( 14.269 - 10.000 )
+    Destination Clock Delay (DCD):    4.269ns = ( 14.269 - 10.000 ) 
     Source Clock Delay      (SCD):    4.626ns
     Clock Pessimism Removal (CPR):    0.336ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -588,7 +588,7 @@ Slack (MET) :             5.373ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -615,7 +615,7 @@ Slack (MET) :             5.373ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                     10.000    10.000 r
+                                                     10.000    10.000 r  
     M18                                               0.000    10.000 r  CLK (IN)
                          net (fo=0)                   0.000    10.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805    10.805 r  CLK_IBUF_inst/O
@@ -623,14 +623,14 @@ Slack (MET) :             5.373ns  (required time - arrival time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    12.764 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          1.505    14.269    CLK_IBUF_BUFG
     SLICE_X0Y22          FDRE                                         r  acc_p2_reg[4]/C
-                         clock pessimism              0.336    14.605
-                         clock uncertainty           -0.035    14.570
+                         clock pessimism              0.336    14.605    
+                         clock uncertainty           -0.035    14.570    
     SLICE_X0Y22          FDRE (Setup_fdre_C_D)        0.029    14.599    acc_p2_reg[4]
   -------------------------------------------------------------------
-                         required time                         14.599
-                         arrival time                          -9.225
+                         required time                         14.599    
+                         arrival time                          -9.225    
   -------------------------------------------------------------------
-                         slack                                  5.373
+                         slack                                  5.373    
 
 Slack (MET) :             5.596ns  (required time - arrival time)
   Source:                 count_p1_reg[0]/C
@@ -643,7 +643,7 @@ Slack (MET) :             5.596ns  (required time - arrival time)
   Data Path Delay:        4.381ns  (logic 1.598ns (36.475%)  route 2.783ns (63.525%))
   Logic Levels:           4  (CARRY4=1 LUT4=2 LUT6=1)
   Clock Path Skew:        -0.019ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.271ns = ( 14.271 - 10.000 )
+    Destination Clock Delay (DCD):    4.271ns = ( 14.271 - 10.000 ) 
     Source Clock Delay      (SCD):    4.626ns
     Clock Pessimism Removal (CPR):    0.336ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -655,7 +655,7 @@ Slack (MET) :             5.596ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -679,7 +679,7 @@ Slack (MET) :             5.596ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                     10.000    10.000 r
+                                                     10.000    10.000 r  
     M18                                               0.000    10.000 r  CLK (IN)
                          net (fo=0)                   0.000    10.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805    10.805 r  CLK_IBUF_inst/O
@@ -687,14 +687,14 @@ Slack (MET) :             5.596ns  (required time - arrival time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    12.764 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          1.507    14.271    CLK_IBUF_BUFG
     SLICE_X0Y21          FDRE                                         r  acc_p2_reg[3]/C
-                         clock pessimism              0.336    14.607
-                         clock uncertainty           -0.035    14.572
+                         clock pessimism              0.336    14.607    
+                         clock uncertainty           -0.035    14.572    
     SLICE_X0Y21          FDRE (Setup_fdre_C_D)        0.031    14.603    acc_p2_reg[3]
   -------------------------------------------------------------------
-                         required time                         14.603
-                         arrival time                          -9.007
+                         required time                         14.603    
+                         arrival time                          -9.007    
   -------------------------------------------------------------------
-                         slack                                  5.596
+                         slack                                  5.596    
 
 Slack (MET) :             5.769ns  (required time - arrival time)
   Source:                 count_p1_reg[0]/C
@@ -707,7 +707,7 @@ Slack (MET) :             5.769ns  (required time - arrival time)
   Data Path Delay:        4.206ns  (logic 1.490ns (35.422%)  route 2.716ns (64.578%))
   Logic Levels:           4  (CARRY4=1 LUT4=1 LUT6=2)
   Clock Path Skew:        -0.018ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.272ns = ( 14.272 - 10.000 )
+    Destination Clock Delay (DCD):    4.272ns = ( 14.272 - 10.000 ) 
     Source Clock Delay      (SCD):    4.626ns
     Clock Pessimism Removal (CPR):    0.336ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -719,7 +719,7 @@ Slack (MET) :             5.769ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -743,7 +743,7 @@ Slack (MET) :             5.769ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                     10.000    10.000 r
+                                                     10.000    10.000 r  
     M18                                               0.000    10.000 r  CLK (IN)
                          net (fo=0)                   0.000    10.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805    10.805 r  CLK_IBUF_inst/O
@@ -751,14 +751,14 @@ Slack (MET) :             5.769ns  (required time - arrival time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    12.764 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          1.508    14.272    CLK_IBUF_BUFG
     SLICE_X1Y20          FDRE                                         r  acc_p2_reg[2]/C
-                         clock pessimism              0.336    14.608
-                         clock uncertainty           -0.035    14.573
+                         clock pessimism              0.336    14.608    
+                         clock uncertainty           -0.035    14.573    
     SLICE_X1Y20          FDRE (Setup_fdre_C_D)        0.029    14.602    acc_p2_reg[2]
   -------------------------------------------------------------------
-                         required time                         14.602
-                         arrival time                          -8.832
+                         required time                         14.602    
+                         arrival time                          -8.832    
   -------------------------------------------------------------------
-                         slack                                  5.769
+                         slack                                  5.769    
 
 Slack (MET) :             6.075ns  (required time - arrival time)
   Source:                 data_1_p1_reg[0]/C
@@ -771,7 +771,7 @@ Slack (MET) :             6.075ns  (required time - arrival time)
   Data Path Delay:        3.892ns  (logic 1.234ns (31.704%)  route 2.658ns (68.296%))
   Logic Levels:           4  (CARRY4=1 LUT3=1 LUT5=1 LUT6=1)
   Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.271ns = ( 14.271 - 10.000 )
+    Destination Clock Delay (DCD):    4.271ns = ( 14.271 - 10.000 ) 
     Source Clock Delay      (SCD):    4.633ns
     Clock Pessimism Removal (CPR):    0.336ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -783,7 +783,7 @@ Slack (MET) :             6.075ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -807,7 +807,7 @@ Slack (MET) :             6.075ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                     10.000    10.000 r
+                                                     10.000    10.000 r  
     M18                                               0.000    10.000 r  CLK (IN)
                          net (fo=0)                   0.000    10.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805    10.805 r  CLK_IBUF_inst/O
@@ -815,14 +815,14 @@ Slack (MET) :             6.075ns  (required time - arrival time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    12.764 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          1.507    14.271    CLK_IBUF_BUFG
     SLICE_X0Y21          FDRE                                         r  acc_p2_reg[1]/C
-                         clock pessimism              0.336    14.607
-                         clock uncertainty           -0.035    14.572
+                         clock pessimism              0.336    14.607    
+                         clock uncertainty           -0.035    14.572    
     SLICE_X0Y21          FDRE (Setup_fdre_C_D)        0.029    14.601    acc_p2_reg[1]
   -------------------------------------------------------------------
-                         required time                         14.601
-                         arrival time                          -8.525
+                         required time                         14.601    
+                         arrival time                          -8.525    
   -------------------------------------------------------------------
-                         slack                                  6.075
+                         slack                                  6.075    
 
 Slack (MET) :             6.851ns  (required time - arrival time)
   Source:                 data_1_p1_reg[0]/C
@@ -835,7 +835,7 @@ Slack (MET) :             6.851ns  (required time - arrival time)
   Data Path Delay:        3.119ns  (logic 1.126ns (36.098%)  route 1.993ns (63.902%))
   Logic Levels:           3  (CARRY4=1 LUT5=1 LUT6=1)
   Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.271ns = ( 14.271 - 10.000 )
+    Destination Clock Delay (DCD):    4.271ns = ( 14.271 - 10.000 ) 
     Source Clock Delay      (SCD):    4.633ns
     Clock Pessimism Removal (CPR):    0.336ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -847,7 +847,7 @@ Slack (MET) :             6.851ns  (required time - arrival time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -869,7 +869,7 @@ Slack (MET) :             6.851ns  (required time - arrival time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                     10.000    10.000 r
+                                                     10.000    10.000 r  
     M18                                               0.000    10.000 r  CLK (IN)
                          net (fo=0)                   0.000    10.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805    10.805 r  CLK_IBUF_inst/O
@@ -877,14 +877,14 @@ Slack (MET) :             6.851ns  (required time - arrival time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    12.764 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          1.507    14.271    CLK_IBUF_BUFG
     SLICE_X0Y21          FDRE                                         r  acc_p2_reg[0]/C
-                         clock pessimism              0.336    14.607
-                         clock uncertainty           -0.035    14.572
+                         clock pessimism              0.336    14.607    
+                         clock uncertainty           -0.035    14.572    
     SLICE_X0Y21          FDRE (Setup_fdre_C_D)        0.032    14.604    acc_p2_reg[0]
   -------------------------------------------------------------------
-                         required time                         14.604
-                         arrival time                          -7.752
+                         required time                         14.604    
+                         arrival time                          -7.752    
   -------------------------------------------------------------------
-                         slack                                  6.851
+                         slack                                  6.851    
 
 
 
@@ -910,7 +910,7 @@ Slack (MET) :             0.203ns  (arrival time - required time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -927,7 +927,7 @@ Slack (MET) :             0.203ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -935,13 +935,13 @@ Slack (MET) :             0.203ns  (arrival time - required time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.073 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          0.851     1.924    CLK_IBUF_BUFG
     SLICE_X0Y23          FDRE                                         r  count_p1_reg[0]/C
-                         clock pessimism             -0.501     1.423
+                         clock pessimism             -0.501     1.423    
     SLICE_X0Y23          FDRE (Hold_fdre_C_D)         0.092     1.515    count_p1_reg[0]
   -------------------------------------------------------------------
-                         required time                         -1.515
-                         arrival time                           1.718
+                         required time                         -1.515    
+                         arrival time                           1.718    
   -------------------------------------------------------------------
-                         slack                                  0.203
+                         slack                                  0.203    
 
 Slack (MET) :             0.303ns  (arrival time - required time)
   Source:                 valid_p1_reg/C
@@ -961,7 +961,7 @@ Slack (MET) :             0.303ns  (arrival time - required time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -978,7 +978,7 @@ Slack (MET) :             0.303ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -986,13 +986,13 @@ Slack (MET) :             0.303ns  (arrival time - required time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.073 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          0.854     1.927    CLK_IBUF_BUFG
     SLICE_X0Y21          FDRE                                         r  count_p1_reg[1]/C
-                         clock pessimism             -0.501     1.426
+                         clock pessimism             -0.501     1.426    
     SLICE_X0Y21          FDRE (Hold_fdre_C_D)         0.107     1.533    count_p1_reg[1]
   -------------------------------------------------------------------
-                         required time                         -1.533
-                         arrival time                           1.836
+                         required time                         -1.533    
+                         arrival time                           1.836    
   -------------------------------------------------------------------
-                         slack                                  0.303
+                         slack                                  0.303    
 
 Slack (MET) :             0.330ns  (arrival time - required time)
   Source:                 count_p1_reg[1]/C
@@ -1012,7 +1012,7 @@ Slack (MET) :             0.330ns  (arrival time - required time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -1029,7 +1029,7 @@ Slack (MET) :             0.330ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -1037,13 +1037,13 @@ Slack (MET) :             0.330ns  (arrival time - required time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.073 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          0.854     1.927    CLK_IBUF_BUFG
     SLICE_X0Y21          FDRE                                         r  acc_p2_reg[0]/C
-                         clock pessimism             -0.515     1.412
+                         clock pessimism             -0.515     1.412    
     SLICE_X0Y21          FDRE (Hold_fdre_C_D)         0.092     1.504    acc_p2_reg[0]
   -------------------------------------------------------------------
-                         required time                         -1.504
-                         arrival time                           1.834
+                         required time                         -1.504    
+                         arrival time                           1.834    
   -------------------------------------------------------------------
-                         slack                                  0.330
+                         slack                                  0.330    
 
 Slack (MET) :             0.337ns  (arrival time - required time)
   Source:                 count_p1_reg[0]/C
@@ -1063,7 +1063,7 @@ Slack (MET) :             0.337ns  (arrival time - required time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -1080,7 +1080,7 @@ Slack (MET) :             0.337ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -1088,13 +1088,13 @@ Slack (MET) :             0.337ns  (arrival time - required time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.073 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          0.851     1.924    CLK_IBUF_BUFG
     SLICE_X0Y23          FDRE                                         r  valid_p2_reg/C
-                         clock pessimism             -0.514     1.410
+                         clock pessimism             -0.514     1.410    
     SLICE_X0Y23          FDRE (Hold_fdre_C_D)         0.107     1.517    valid_p2_reg
   -------------------------------------------------------------------
-                         required time                         -1.517
-                         arrival time                           1.854
+                         required time                         -1.517    
+                         arrival time                           1.854    
   -------------------------------------------------------------------
-                         slack                                  0.337
+                         slack                                  0.337    
 
 Slack (MET) :             0.339ns  (arrival time - required time)
   Source:                 data_1_p1_reg[0]/C
@@ -1114,7 +1114,7 @@ Slack (MET) :             0.339ns  (arrival time - required time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -1131,7 +1131,7 @@ Slack (MET) :             0.339ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -1139,13 +1139,13 @@ Slack (MET) :             0.339ns  (arrival time - required time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.073 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          0.855     1.928    CLK_IBUF_BUFG
     SLICE_X1Y20          FDRE                                         r  acc_p2_reg[2]/C
-                         clock pessimism             -0.501     1.427
+                         clock pessimism             -0.501     1.427    
     SLICE_X1Y20          FDRE (Hold_fdre_C_D)         0.091     1.518    acc_p2_reg[2]
   -------------------------------------------------------------------
-                         required time                         -1.518
-                         arrival time                           1.857
+                         required time                         -1.518    
+                         arrival time                           1.857    
   -------------------------------------------------------------------
-                         slack                                  0.339
+                         slack                                  0.339    
 
 Slack (MET) :             0.345ns  (arrival time - required time)
   Source:                 count_p1_reg[0]/C
@@ -1165,7 +1165,7 @@ Slack (MET) :             0.345ns  (arrival time - required time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -1182,7 +1182,7 @@ Slack (MET) :             0.345ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -1190,13 +1190,13 @@ Slack (MET) :             0.345ns  (arrival time - required time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.073 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          0.853     1.926    CLK_IBUF_BUFG
     SLICE_X0Y22          FDRE                                         r  acc_p2_reg[7]/C
-                         clock pessimism             -0.501     1.425
+                         clock pessimism             -0.501     1.425    
     SLICE_X0Y22          FDRE (Hold_fdre_C_D)         0.107     1.532    acc_p2_reg[7]
   -------------------------------------------------------------------
-                         required time                         -1.532
-                         arrival time                           1.877
+                         required time                         -1.532    
+                         arrival time                           1.877    
   -------------------------------------------------------------------
-                         slack                                  0.345
+                         slack                                  0.345    
 
 Slack (MET) :             0.356ns  (arrival time - required time)
   Source:                 count_p1_reg[0]/C
@@ -1216,7 +1216,7 @@ Slack (MET) :             0.356ns  (arrival time - required time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -1233,7 +1233,7 @@ Slack (MET) :             0.356ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -1241,13 +1241,13 @@ Slack (MET) :             0.356ns  (arrival time - required time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.073 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          0.853     1.926    CLK_IBUF_BUFG
     SLICE_X0Y22          FDRE                                         r  acc_p2_reg[6]/C
-                         clock pessimism             -0.501     1.425
+                         clock pessimism             -0.501     1.425    
     SLICE_X0Y22          FDRE (Hold_fdre_C_D)         0.092     1.517    acc_p2_reg[6]
   -------------------------------------------------------------------
-                         required time                         -1.517
-                         arrival time                           1.873
+                         required time                         -1.517    
+                         arrival time                           1.873    
   -------------------------------------------------------------------
-                         slack                                  0.356
+                         slack                                  0.356    
 
 Slack (MET) :             0.365ns  (arrival time - required time)
   Source:                 data_3_p1_reg[0]/C
@@ -1267,7 +1267,7 @@ Slack (MET) :             0.365ns  (arrival time - required time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -1284,7 +1284,7 @@ Slack (MET) :             0.365ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -1292,13 +1292,13 @@ Slack (MET) :             0.365ns  (arrival time - required time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.073 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          0.854     1.927    CLK_IBUF_BUFG
     SLICE_X0Y21          FDRE                                         r  acc_p2_reg[1]/C
-                         clock pessimism             -0.501     1.426
+                         clock pessimism             -0.501     1.426    
     SLICE_X0Y21          FDRE (Hold_fdre_C_D)         0.091     1.517    acc_p2_reg[1]
   -------------------------------------------------------------------
-                         required time                         -1.517
-                         arrival time                           1.882
+                         required time                         -1.517    
+                         arrival time                           1.882    
   -------------------------------------------------------------------
-                         slack                                  0.365
+                         slack                                  0.365    
 
 Slack (MET) :             0.401ns  (arrival time - required time)
   Source:                 count_p1_reg[0]/C
@@ -1318,7 +1318,7 @@ Slack (MET) :             0.401ns  (arrival time - required time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -1335,7 +1335,7 @@ Slack (MET) :             0.401ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -1343,13 +1343,13 @@ Slack (MET) :             0.401ns  (arrival time - required time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.073 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          0.853     1.926    CLK_IBUF_BUFG
     SLICE_X0Y22          FDRE                                         r  acc_p2_reg[5]/C
-                         clock pessimism             -0.501     1.425
+                         clock pessimism             -0.501     1.425    
     SLICE_X0Y22          FDRE (Hold_fdre_C_D)         0.107     1.532    acc_p2_reg[5]
   -------------------------------------------------------------------
-                         required time                         -1.532
-                         arrival time                           1.933
+                         required time                         -1.532    
+                         arrival time                           1.933    
   -------------------------------------------------------------------
-                         slack                                  0.401
+                         slack                                  0.401    
 
 Slack (MET) :             0.418ns  (arrival time - required time)
   Source:                 count_p1_reg[0]/C
@@ -1369,7 +1369,7 @@ Slack (MET) :             0.418ns  (arrival time - required time)
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -1386,7 +1386,7 @@ Slack (MET) :             0.418ns  (arrival time - required time)
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -1394,13 +1394,13 @@ Slack (MET) :             0.418ns  (arrival time - required time)
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.073 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          0.853     1.926    CLK_IBUF_BUFG
     SLICE_X0Y22          FDRE                                         r  acc_p2_reg[4]/C
-                         clock pessimism             -0.501     1.425
+                         clock pessimism             -0.501     1.425    
     SLICE_X0Y22          FDRE (Hold_fdre_C_D)         0.091     1.516    acc_p2_reg[4]
   -------------------------------------------------------------------
-                         required time                         -1.516
-                         arrival time                           1.934
+                         required time                         -1.516    
+                         arrival time                           1.934    
   -------------------------------------------------------------------
-                         slack                                  0.418
+                         slack                                  0.418    
 
 
 
@@ -1450,7 +1450,7 @@ High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.50
 --------------------------------------------------------------------------------------
 Path Group:  (none)
 From Clock:  clk_pin_p
-  To Clock:
+  To Clock:  
 
 Max Delay            12 Endpoints
 Min Delay            12 Endpoints
@@ -1477,7 +1477,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -1513,7 +1513,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -1547,7 +1547,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -1581,7 +1581,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -1615,7 +1615,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -1649,7 +1649,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -1683,7 +1683,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -1717,7 +1717,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -1751,7 +1751,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -1785,7 +1785,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.938     0.938 r  CLK_IBUF_inst/O
@@ -1825,7 +1825,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -1859,7 +1859,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -1893,7 +1893,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -1927,7 +1927,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -1961,7 +1961,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -1995,7 +1995,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -2029,7 +2029,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -2063,7 +2063,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -2097,7 +2097,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -2131,7 +2131,7 @@ Slack:                    inf
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.167     0.167 r  CLK_IBUF_inst/O
@@ -2153,7 +2153,7 @@ Slack:                    inf
 
 --------------------------------------------------------------------------------------
 Path Group:  (none)
-From Clock:
+From Clock:  
   To Clock:  clk_pin_p
 
 Max Delay            47 Endpoints
@@ -2194,7 +2194,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805     0.805 r  CLK_IBUF_inst/O
@@ -2234,7 +2234,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805     0.805 r  CLK_IBUF_inst/O
@@ -2274,7 +2274,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805     0.805 r  CLK_IBUF_inst/O
@@ -2314,7 +2314,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805     0.805 r  CLK_IBUF_inst/O
@@ -2354,7 +2354,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805     0.805 r  CLK_IBUF_inst/O
@@ -2394,7 +2394,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805     0.805 r  CLK_IBUF_inst/O
@@ -2434,7 +2434,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805     0.805 r  CLK_IBUF_inst/O
@@ -2474,7 +2474,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805     0.805 r  CLK_IBUF_inst/O
@@ -2514,7 +2514,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805     0.805 r  CLK_IBUF_inst/O
@@ -2554,7 +2554,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.805     0.805 r  CLK_IBUF_inst/O
@@ -2593,7 +2593,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -2626,7 +2626,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -2659,7 +2659,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -2692,7 +2692,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -2725,7 +2725,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -2758,7 +2758,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -2791,7 +2791,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -2824,7 +2824,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -2857,7 +2857,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -2890,7 +2890,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_pin_p rise edge)
-                                                      0.000     0.000 r
+                                                      0.000     0.000 r  
     M18                                               0.000     0.000 r  CLK (IN)
                          net (fo=0)                   0.000     0.000    CLK
     M18                  IBUF (Prop_ibuf_I_O)         0.356     0.356 r  CLK_IBUF_inst/O
@@ -2898,3 +2898,8 @@ Slack:                    inf
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.073 r  CLK_IBUF_BUFG_inst/O
                          net (fo=30, routed)          0.858     1.931    CLK_IBUF_BUFG
     SLICE_X1Y17          FDRE                                         r  data_1_p1_reg[3]/C
+
+
+
+
+

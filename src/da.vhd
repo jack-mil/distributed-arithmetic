@@ -10,14 +10,17 @@ library ieee;
   use ieee.numeric_std.all;
 
 entity da is
+  generic (
+    WIDTH : positive := 4
+  );
   port (
     -- input side
     CLK       : in    std_logic;          -- system clock
     RST       : in    std_logic;          -- synchronous active-high reset
-    DATA_IN_0 : in    signed(3 downto 0); -- multiplies with coef_0
-    DATA_IN_1 : in    signed(3 downto 0); -- multiplies with coef_1
-    DATA_IN_2 : in    signed(3 downto 0); -- multiplies with coef_2
-    DATA_IN_3 : in    signed(3 downto 0); -- multiplies with coef_3
+    DATA_IN_0 : in    signed(WIDTH - 1 downto 0); -- multiplies with coef_0
+    DATA_IN_1 : in    signed(WIDTH - 1 downto 0); -- multiplies with coef_1
+    DATA_IN_2 : in    signed(WIDTH - 1 downto 0); -- multiplies with coef_2
+    DATA_IN_3 : in    signed(WIDTH - 1 downto 0); -- multiplies with coef_3
     IN_VALID  : in    std_logic;          -- indicate all input data is valid
     NEXT_IN   : out   std_logic;          -- high if ready to get valid data. low if busy
     -- output side
@@ -63,14 +66,16 @@ architecture arch of da is
     return to_signed(result, 5); -- 5 bits needed
   end function;
 
+  constant MAX : natural := WIDTH-1;
+
   -- --------- Stage 1 --------
-  signal data_0_p1 : signed(3 downto 0)   := (others => '0');
-  signal data_1_p1 : signed(3 downto 0)   := (others => '0');
-  signal data_2_p1 : signed(3 downto 0)   := (others => '0');
-  signal data_3_p1 : signed(3 downto 0)   := (others => '0');
+  signal data_0_p1 : signed(MAX downto 0)   := (others => '0');
+  signal data_1_p1 : signed(MAX downto 0)   := (others => '0');
+  signal data_2_p1 : signed(MAX downto 0)   := (others => '0');
+  signal data_3_p1 : signed(MAX downto 0)   := (others => '0');
   signal valid_p1  : std_logic            := '0'; -- stage one data is valid
   signal stall_p1  : std_logic            := '0'; -- prevent more input while processing
-  signal count_p1  : unsigned(1 downto 0) := "00";-- count 4 bits at a time
+  signal count_p1  : natural range 0 to MAX; -- count N=WIDTH bits at a time
 
   signal addr      : unsigned(3 downto 0);        -- current input bits
   signal data_lut  : signed(4 downto 0);          -- look-up data
@@ -105,9 +110,13 @@ begin
   begin
     if rising_edge(CLK) then
       if (RST = '1') then
-        count_p1 <= (others => '0');
+        count_p1 <= 0;
       elsif (valid_p1 = '1') then
-        count_p1 <= count_p1 + 1; -- automatically rolls over
+        if count_p1 = MAX then
+          count_p1 <= 0;
+        else
+          count_p1 <= count_p1 + 1;
+        end if;
       end if;
     end if;
   end process COUNT_BITS;
@@ -115,7 +124,7 @@ begin
   -- prevent more input until N (4) cycles of valid data
   GEN_STALL : process (valid_p1, count_p1)
   begin
-    if count_p1 = "11" then
+    if count_p1 = MAX then -- finished
       stall_p1 <= '0';
     elsif valid_p1='1' then -- starting
       stall_p1 <= '1';
@@ -129,17 +138,17 @@ begin
   -- Generate the addr according to the current cycle
   -- MSB is bit from data_0, LSB is bit from data_3
   with count_p1 select addr <=
-    data_0_p1(0) & data_1_p1(0) & data_2_p1(0) & data_3_p1(0) when "00",
-    data_0_p1(1) & data_1_p1(1) & data_2_p1(1) & data_3_p1(1) when "01",
-    data_0_p1(2) & data_1_p1(2) & data_2_p1(2) & data_3_p1(2) when "10",
-    data_0_p1(3) & data_1_p1(3) & data_2_p1(3) & data_3_p1(3) when "11",
+    data_0_p1(0) & data_1_p1(0) & data_2_p1(0) & data_3_p1(0) when 0,
+    data_0_p1(1) & data_1_p1(1) & data_2_p1(1) & data_3_p1(1) when 1,
+    data_0_p1(2) & data_1_p1(2) & data_2_p1(2) & data_3_p1(2) when 2,
+    data_0_p1(3) & data_1_p1(3) & data_2_p1(3) & data_3_p1(3) when 3,
     (others => '0') when others;
 
   -- current bits drive the lut output
   data_lut <= ROM(addr);
 
   -- we use a dedicated signal here because the conversion from boolean to std_logic is bit complicated
-  count_equ_3 <= '1' when count_p1 = to_unsigned(3, count_p1'length) else
+  count_equ_3 <= '1' when count_p1 = MAX else
                  '0';
 
   -- Perform the shift and accumulate operation
@@ -147,23 +156,23 @@ begin
   SHIFT_AND_SUM : process (CLK, RST) is
     variable data_lut_shift : signed(9 downto 0);
   begin
-      if rising_edge(CLK) then
-        if (RST = '1') then
-          valid_p2 <= '0';
-          acc_p2 <= (others => '0');
+    if rising_edge(CLK) then
+      if (RST = '1') then
+        valid_p2 <= '0';
+        acc_p2 <= (others => '0');
+      else
+        valid_p2 <= count_equ_3;
+        data_lut_shift := resize(data_lut, data_lut_shift'length);
+        data_lut_shift := shift_left(data_lut_shift, count_p1);
+        if (count_p1 = 0) then
+          acc_p2 <= data_lut_shift; -- reset old data
+        elsif (count_p1 = MAX) then
+          acc_p2 <= acc_p2 - data_lut_shift; -- reverse sign of final sum
         else
-          valid_p2 <= count_equ_3;
-          data_lut_shift := resize(data_lut, data_lut_shift'length);
-          data_lut_shift := shift_left(data_lut_shift, to_integer(count_p1));
-          if (count_p1 = "00") then
-            acc_p2 <= data_lut_shift; -- reset old data
-          elsif (count_p1 = "11") then
-            acc_p2 <= acc_p2 - data_lut_shift; -- reverse sign of final sum
-          else
-            acc_p2 <= acc_p2 + data_lut_shift; -- normal accumulate for middle cycles
-          end if;
+          acc_p2 <= acc_p2 + data_lut_shift; -- normal accumulate for middle cycles
         end if;
       end if;
+    end if;
   end process SHIFT_AND_SUM;
 
   -- --------- Output --------
