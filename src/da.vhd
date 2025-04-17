@@ -13,12 +13,12 @@ use work.util.clog2;
 
 entity da is
   generic (
-    WIDTH : positive := 6; -- should be a power of 2 word-size (e.g. 4/8/16)
+    WIDTH : positive := 4; -- should be a power of 2 word-size (e.g. 4/8/16)
 
-    A0 : integer := 7;  -- Coefficient 0
-    A1 : integer := 3;  -- Coefficient 1
-    A2 : integer := -8; -- Coefficient 2
-    A3 : integer := -5  -- Coefficient 3
+    A0 : integer; -- Coefficient 0
+    A1 : integer; -- Coefficient 1
+    A2 : integer; -- Coefficient 2
+    A3 : integer  -- Coefficient 3
   );
   port (
     -- input side
@@ -36,7 +36,6 @@ entity da is
   );
 end entity da;
 
--- DO NOT MODIFY PORT NAMES ABOVE
 
 architecture arch of da is
 

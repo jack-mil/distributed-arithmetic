@@ -1,15 +1,18 @@
--- Engineer     : Junyoung Hwang
--- Date         : 04/02/2025
+-- Engineer     : Jackson Miller
+-- Date         : 04/17/2025
 -- Name of file : tb_da.vhd
 -- Description  : test bench for da.vhd
+
+library std;
+  use std.env.all;
+  use std.textio.all;
 
 library ieee;
   use ieee.std_logic_1164.all;
   use ieee.numeric_std.all;
   use ieee.math_real.all;
-  use std.env.all;
-  use std.textio.all;
   use ieee.std_logic_textio.all;
+
 
 entity TB_DA is
   generic (
@@ -21,32 +24,26 @@ end entity TB_DA;
 
 architecture TB_ARCH of TB_DA is
 
-  component DA is
-    port (
-      -- input side
-      CLK            : in    std_logic;
-      RST            : in    std_logic;
-      DATA_IN_0      : in    signed(3 downto 0);
-      DATA_IN_1      : in    signed(3 downto 0);
-      DATA_IN_2      : in    signed(3 downto 0);
-      DATA_IN_3      : in    signed(3 downto 0);
-      IN_VALID       : in    std_logic;
-      NEXT_IN        : out   std_logic;
-      -- output side
-      DATA_OUT       : out   signed (9 downto 0);
-      OUT_VALID      : out   std_logic
-    );
-  end component DA;
+  constant WIDTH : POSITIVE := 4; -- 4 bit input and coefficients
+  subtype input_t is signed(WIDTH - 1 downto 0);
+  subtype output_t is signed((2 + WIDTH * 2) - 1 downto 0);
+
+  -- -------- Coefficients -------- --
+  -- Must fit in INPUT_WIDTH bits (signed 2's complement)
+  constant A0 : integer := 7;  -- Coefficient 0
+  constant A1 : integer := 3;  -- Coefficient 1
+  constant A2 : integer := -8; -- Coefficient 2
+  constant A3 : integer := -5;  -- Coefficient 3
 
   -- signals local only to the present ip
   signal clk, rst        : std_logic;
-  signal data_in_0       : signed(3 downto 0);
-  signal data_in_1       : signed(3 downto 0);
-  signal data_in_2       : signed(3 downto 0);
-  signal data_in_3       : signed(3 downto 0);
+  signal data_in_0       : input_t;
+  signal data_in_1       : input_t;
+  signal data_in_2       : input_t;
+  signal data_in_3       : input_t;
   signal in_valid        : std_logic := '0';
   signal next_in         : std_logic;
-  signal data_out        : signed(9 downto 0);
+  signal data_out        : output_t;
   signal out_valid       : std_logic;
   -- signals related to the file operations
   file input_data_file   : text;
@@ -59,19 +56,26 @@ architecture TB_ARCH of TB_DA is
 
 begin
 
-  DUT : DA
-    port map (
-      CLK       => clk,
-      RST       => rst,
+  DUT: entity work.da
+   generic map(
+      WIDTH => WIDTH,
+      A0 => A0,
+      A1 => A1,
+      A2 => A2,
+      A3 => A3
+  )
+   port map(
+      CLK => clk,
+      RST => rst,
       DATA_IN_0 => data_in_0,
       DATA_IN_1 => data_in_1,
       DATA_IN_2 => data_in_2,
       DATA_IN_3 => data_in_3,
-      IN_VALID  => in_valid,
-      NEXT_IN   => next_in,
-      DATA_OUT  => data_out,
+      IN_VALID => in_valid,
+      NEXT_IN => next_in,
+      DATA_OUT => data_out,
       OUT_VALID => out_valid
-    );
+  );
 
   P_CLK : process is
   begin
