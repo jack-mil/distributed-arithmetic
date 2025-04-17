@@ -9,9 +9,16 @@ library ieee;
   use ieee.std_logic_1164.all;
   use ieee.numeric_std.all;
 
+use work.util.clog2;
+
 entity da is
   generic (
-    WIDTH : positive := 4
+    WIDTH : positive := 6; -- should be a power of 2 word-size (e.g. 4/8/16)
+
+    A0 : integer := 7;  -- Coefficient 0
+    A1 : integer := 3;  -- Coefficient 1
+    A2 : integer := -8; -- Coefficient 2
+    A3 : integer := -5  -- Coefficient 3
   );
   port (
     -- input side
@@ -24,7 +31,7 @@ entity da is
     IN_VALID  : in    std_logic;          -- indicate all input data is valid
     NEXT_IN   : out   std_logic;          -- high if ready to get valid data. low if busy
     -- output side
-    DATA_OUT  : out   signed(9 downto 0); -- output of sum-of-products
+    DATA_OUT  : out   signed((2+WIDTH*2) - 1 downto 0); -- output of sum-of-products (4 sums of 4x4 multiplication = log2(4)+8 bits = 10bits)
     OUT_VALID : out   std_logic           -- high when output is complete
   );
 end entity da;
@@ -33,15 +40,15 @@ end entity da;
 
 architecture arch of da is
 
-  -- ----------------- Define Internal Signals -----------------
-  -- A0=7, A1=3, A2=-8, A3=-5
-  constant A0 : integer := 7;
-  constant A1 : integer := 3;
-  constant A2 : integer := -8;
-  constant A3 : integer := -5;
+  constant DEPTH : POSITIVE := 4; -- number of inputs (4)
+
+  constant LUT_SIZE : positive := clog2(DEPTH) + WIDTH;
+
+  constant MAX : natural := WIDTH - 1;
 
   -- --------- ROM LUT ----------
-  function ROM(addr : unsigned(3 downto 0)) return signed is
+  function ROM(addr : unsigned(DEPTH-1 downto 0)) return signed is
+    -- additional bits required for DEPTH sums of WIDTH bits
     variable result : integer;
   begin
     case addr is
@@ -63,26 +70,26 @@ architecture arch of da is
       when "1111" => result := A0 + A1 + A2 + A3; -- -3
       when others => result := 0;
     end case;
-    return to_signed(result, 5); -- 5 bits needed
+    return to_signed(result, LUT_SIZE);
   end function;
 
-  constant MAX : natural := WIDTH-1;
+  -- ----------------- Define Internal Signals -----------------
 
   -- --------- Stage 1 --------
-  signal data_0_p1 : signed(MAX downto 0)   := (others => '0');
-  signal data_1_p1 : signed(MAX downto 0)   := (others => '0');
-  signal data_2_p1 : signed(MAX downto 0)   := (others => '0');
-  signal data_3_p1 : signed(MAX downto 0)   := (others => '0');
+  signal data_0_p1 : signed(MAX downto 0) := (others => '0');
+  signal data_1_p1 : signed(MAX downto 0) := (others => '0');
+  signal data_2_p1 : signed(MAX downto 0) := (others => '0');
+  signal data_3_p1 : signed(MAX downto 0) := (others => '0');
   signal valid_p1  : std_logic            := '0'; -- stage one data is valid
   signal stall_p1  : std_logic            := '0'; -- prevent more input while processing
-  signal count_p1  : natural range 0 to MAX; -- count N=WIDTH bits at a time
+  signal count_p1  : natural range 0 to MAX := 0; -- count N=WIDTH bits at a time
 
-  signal addr      : unsigned(3 downto 0);        -- current input bits
-  signal data_lut  : signed(4 downto 0);          -- look-up data
+  signal addr      : unsigned(DEPTH-1 downto 0);        -- current input bits
+  signal data_lut  : signed(LUT_SIZE-1 downto 0); -- look-up data
 
   -- --------- Stage 2 --------
-  signal acc_p2      : signed(9 downto 0) := (others => '0'); -- output accumulator
-  signal valid_p2    : std_logic          := '0'; -- second stage (output) complete when '1'
+  signal acc_p2      : signed(DATA_OUT'range) := (others => '0'); -- output accumulator
+  signal valid_p2    : std_logic              := '0'; -- second stage (output) complete when '1'
   signal count_equ_3 : std_logic;                 -- internal flag
 
 begin
@@ -154,7 +161,7 @@ begin
   -- Perform the shift and accumulate operation
   -- to generate the output signal
   SHIFT_AND_SUM : process (CLK, RST) is
-    variable data_lut_shift : signed(9 downto 0);
+    variable data_lut_shift : signed(acc_p2'range);
   begin
     if rising_edge(CLK) then
       if (RST = '1') then
