@@ -15,6 +15,7 @@ check:
 # Compare the simulation output to expected output
 diff:
   cp *_project/*_project.sim/sim_1/behav/xsim/output.txt run/
+  cp *_project/*_project.sim/sim_1/behav/xsim/output_cycle.txt run/
   diff run/output.txt \
        run/output_ref.txt \
        --unified \
@@ -33,13 +34,14 @@ report:
 build:
   source ./env.sh && vivado -nojournal -nolog -notrace -mode batch -source ./*_project.tcl
 
-# Delete ALL untracked git files
+# Delete the ignored vivado project
 clean:
   #!/usr/bin/bash
-  git clean -Xdn
+  ARGS="-X *_project/"
+  git clean --dry-run $ARGS
   read -p "ARE YOU SURE? (y/n)" -n 1 -r
   echo # move to newline
-  if [[ "$REPLY" =~ ^[Yy]$ ]] ; then git clean -Xdf; else echo "Aborted"; fi
+  if [[ "$REPLY" =~ ^[Yy]$ ]] ; then git clean --force $ARGS; else echo "Aborted"; fi
 
 # clean then build
 clean-rebuild: clean build
