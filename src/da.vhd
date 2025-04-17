@@ -15,10 +15,11 @@ entity da is
   generic (
     WIDTH : positive := 4; -- should be a power of 2 word-size (e.g. 4/8/16)
 
-    A0 : integer; -- Coefficient 0
-    A1 : integer; -- Coefficient 1
-    A2 : integer; -- Coefficient 2
-    A3 : integer  -- Coefficient 3
+    -- Filter coefficients. Identity filter by default (y[n]=x[n])
+    A0 : integer := 1; -- Coefficient 0
+    A1 : integer := 0; -- Coefficient 1
+    A2 : integer := 0; -- Coefficient 2
+    A3 : integer := 0  -- Coefficient 3
   );
   port (
     -- input side
