@@ -2,8 +2,9 @@
 -- Date         : 04/11/2025
 -- Name of file : da.vhd
 -- Description  : implements a signed Distributed Arithmetic,
---                with 4 signed input vectors. Each is 4-bit wide.
---                The coefs are also 4-bit wide signed numbers
+--                with 4 signed input vectors. Inputs are of WIDTH bits
+--                Coefficients generics are specified as integers
+--                but should fit in WIDTH bits
 
 library ieee;
   use ieee.std_logic_1164.all;
@@ -16,10 +17,10 @@ entity da is
     WIDTH : positive := 4; -- should be a power of 2 word-size (e.g. 4/8/16)
 
     -- Filter coefficients. Identity filter by default (y[n]=x[n])
-    A0 : integer := 1; -- Coefficient 0
-    A1 : integer := 0; -- Coefficient 1
-    A2 : integer := 0; -- Coefficient 2
-    A3 : integer := 0  -- Coefficient 3
+    A0 : integer range -8 to 7 := 1; -- Coefficient 0
+    A1 : integer range -8 to 7 := 0; -- Coefficient 1
+    A2 : integer range -8 to 7 := 0; -- Coefficient 2
+    A3 : integer range -8 to 7 := 0  -- Coefficient 3
   );
   port (
     -- input side
@@ -38,54 +39,56 @@ entity da is
 end entity da;
 
 
-architecture arch of da is
+architecture rtl of da is
 
   constant DEPTH : POSITIVE := 4; -- number of inputs (4)
 
-  constant LUT_SIZE : positive := clog2(DEPTH) + WIDTH;
-
-  constant MAX : natural := WIDTH - 1;
+  constant LUT_OUT_SIZE : positive := clog2(DEPTH) + WIDTH;
 
   -- --------- ROM LUT ----------
-  function ROM(addr : unsigned(DEPTH-1 downto 0)) return signed is
-    -- additional bits required for DEPTH sums of WIDTH bits
-    variable result : integer;
-  begin
-    case addr is
-      when "0000" => result := 0;
-      when "0001" => result := A3;                -- -5
-      when "0010" => result := A2;                -- -8
-      when "0011" => result := A2 + A3;           -- -13
-      when "0100" => result := A1;                -- +3
-      when "0101" => result := A1 + A3;           -- -2
-      when "0110" => result := A1 + A2;           -- -5
-      when "0111" => result := A1 + A2 + A3;      -- -10
-      when "1000" => result := A0;                -- +7
-      when "1001" => result := A0 + A3;           -- +2
-      when "1010" => result := A0 + A2;           -- -1
-      when "1011" => result := A0 + A2 + A3;      -- -6
-      when "1100" => result := A0 + A1;           -- +10
-      when "1101" => result := A0 + A1 + A3;      -- +5
-      when "1110" => result := A0 + A1 + A2;      -- +2
-      when "1111" => result := A0 + A1 + A2 + A3; -- -3
-      when others => result := 0;
-    end case;
-    return to_signed(result, LUT_SIZE);
-  end function;
+  -- function ROM(addr : std_logic_vector(DEPTH-1 downto 0)) return signed is
+  --   -- additional bits required for DEPTH sums of WIDTH bits
+  --   variable result : integer;
+  -- begin
+  --   case addr is
+  --     when "0000" => result := 0;
+  --     when "0001" => result := A3;                -- -5
+  --     when "0010" => result := A2;                -- -8
+  --     when "0011" => result := A2 + A3;           -- -13
+  --     when "0100" => result := A1;                -- +3
+  --     when "0101" => result := A1 + A3;           -- -2
+  --     when "0110" => result := A1 + A2;           -- -5
+  --     when "0111" => result := A1 + A2 + A3;      -- -10
+  --     when "1000" => result := A0;                -- +7
+  --     when "1001" => result := A0 + A3;           -- +2
+  --     when "1010" => result := A0 + A2;           -- -1
+  --     when "1011" => result := A0 + A2 + A3;      -- -6
+  --     when "1100" => result := A0 + A1;           -- +10
+  --     when "1101" => result := A0 + A1 + A3;      -- +5
+  --     when "1110" => result := A0 + A1 + A2;      -- +2
+  --     when "1111" => result := A0 + A1 + A2 + A3; -- -3
+  --     when others => result := 0;
+  --   end case;
+  --   return to_signed(result, LUT_OUT_SIZE);
+  -- end function;
 
-  -- ----------------- Define Internal Signals -----------------
+  -- ----------------- ROM Input and Output -------------------
+  signal addr      : std_logic_vector(DEPTH-1 downto 0);      -- current input bits
+  signal data_lut  : signed(LUT_OUT_SIZE-1 downto 0); -- look-up data
+
+  -- ----------------- Define Pipeline Signals -----------------
+
+  constant MSB : natural := WIDTH - 1;
 
   -- --------- Stage 1 --------
-  signal data_0_p1 : signed(MAX downto 0) := (others => '0');
-  signal data_1_p1 : signed(MAX downto 0) := (others => '0');
-  signal data_2_p1 : signed(MAX downto 0) := (others => '0');
-  signal data_3_p1 : signed(MAX downto 0) := (others => '0');
+  signal data_0_p1 : signed(MSB downto 0) := (others => '0');
+  signal data_1_p1 : signed(MSB downto 0) := (others => '0');
+  signal data_2_p1 : signed(MSB downto 0) := (others => '0');
+  signal data_3_p1 : signed(MSB downto 0) := (others => '0');
   signal valid_p1  : std_logic            := '0'; -- stage one data is valid
   signal stall_p1  : std_logic            := '0'; -- prevent more input while processing
-  signal count_p1  : natural range 0 to MAX := 0; -- count N=WIDTH bits at a time
+  signal count_p1  : natural range 0 to MSB := 0; -- count N=WIDTH bits at a time
 
-  signal addr      : unsigned(DEPTH-1 downto 0);        -- current input bits
-  signal data_lut  : signed(LUT_SIZE-1 downto 0); -- look-up data
 
   -- --------- Stage 2 --------
   signal acc_p2      : signed(DATA_OUT'range) := (others => '0'); -- output accumulator
@@ -119,7 +122,7 @@ begin
       if (RST = '1') then
         count_p1 <= 0;
       elsif (valid_p1 = '1') then
-        if count_p1 = MAX then
+        if count_p1 = MSB then
           count_p1 <= 0;
         else
           count_p1 <= count_p1 + 1;
@@ -131,7 +134,7 @@ begin
   -- prevent more input until N (4) cycles of valid data
   GEN_STALL : process (valid_p1, count_p1)
   begin
-    if count_p1 = MAX then -- finished
+    if count_p1 = MSB then -- finished
       stall_p1 <= '0';
     elsif valid_p1='1' then -- starting
       stall_p1 <= '1';
@@ -152,10 +155,22 @@ begin
     (others => '0') when others;
 
   -- current bits drive the lut output
-  data_lut <= ROM(addr);
+  -- data_lut <= ROM(addr);
+  LUT_inst: entity work.LUT
+   generic map(
+      WIDTH => WIDTH,
+      A0 => TO_SIGNED(A0, WIDTH),
+      A1 => TO_SIGNED(A1, WIDTH),
+      A2 => TO_SIGNED(A2, WIDTH),
+      A3 => TO_SIGNED(A3, WIDTH)
+  )
+   port map(
+      ADDR_i => addr,
+      DATA_o => data_lut
+  );
 
   -- we use a dedicated signal here because the conversion from boolean to std_logic is bit complicated
-  count_equ_3 <= '1' when count_p1 = MAX else
+  count_equ_3 <= '1' when count_p1 = MSB else
                  '0';
 
   -- Perform the shift and accumulate operation
@@ -173,7 +188,7 @@ begin
         data_lut_shift := shift_left(data_lut_shift, count_p1);
         if (count_p1 = 0) then
           acc_p2 <= data_lut_shift; -- reset old data
-        elsif (count_p1 = MAX) then
+        elsif (count_p1 = MSB) then
           acc_p2 <= acc_p2 - data_lut_shift; -- reverse sign of final sum
         else
           acc_p2 <= acc_p2 + data_lut_shift; -- normal accumulate for middle cycles
@@ -187,4 +202,4 @@ begin
   DATA_OUT  <= acc_p2;
   OUT_VALID <= valid_p2;
 
-end arch;
+end rtl;

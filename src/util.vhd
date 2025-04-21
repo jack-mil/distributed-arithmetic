@@ -3,8 +3,8 @@ package util is
 end package;
 
 library ieee;
-  use IEEE.math_real.ceil;
-  use IEEE.math_real.log2;
+  use ieee.math_real.ceil;
+  use ieee.math_real.log2;
 
 package body util is
   function clog2 (X : in POSITIVE) return NATURAL is
