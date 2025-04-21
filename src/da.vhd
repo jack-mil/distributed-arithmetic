@@ -46,31 +46,31 @@ architecture rtl of da is
   constant LUT_OUT_SIZE : positive := clog2(DEPTH) + WIDTH;
 
   -- --------- ROM LUT ----------
-  -- function ROM(addr : std_logic_vector(DEPTH-1 downto 0)) return signed is
-  --   -- additional bits required for DEPTH sums of WIDTH bits
-  --   variable result : integer;
-  -- begin
-  --   case addr is
-  --     when "0000" => result := 0;
-  --     when "0001" => result := A3;                -- -5
-  --     when "0010" => result := A2;                -- -8
-  --     when "0011" => result := A2 + A3;           -- -13
-  --     when "0100" => result := A1;                -- +3
-  --     when "0101" => result := A1 + A3;           -- -2
-  --     when "0110" => result := A1 + A2;           -- -5
-  --     when "0111" => result := A1 + A2 + A3;      -- -10
-  --     when "1000" => result := A0;                -- +7
-  --     when "1001" => result := A0 + A3;           -- +2
-  --     when "1010" => result := A0 + A2;           -- -1
-  --     when "1011" => result := A0 + A2 + A3;      -- -6
-  --     when "1100" => result := A0 + A1;           -- +10
-  --     when "1101" => result := A0 + A1 + A3;      -- +5
-  --     when "1110" => result := A0 + A1 + A2;      -- +2
-  --     when "1111" => result := A0 + A1 + A2 + A3; -- -3
-  --     when others => result := 0;
-  --   end case;
-  --   return to_signed(result, LUT_OUT_SIZE);
-  -- end function;
+  function ROM(addr : std_logic_vector(DEPTH-1 downto 0)) return signed is
+    -- additional bits required for DEPTH sums of WIDTH bits
+    variable result : integer;
+  begin
+    case addr is
+      when "0000" => result := 0;
+      when "0001" => result := A3;                -- -5
+      when "0010" => result := A2;                -- -8
+      when "0011" => result := A2 + A3;           -- -13
+      when "0100" => result := A1;                -- +3
+      when "0101" => result := A1 + A3;           -- -2
+      when "0110" => result := A1 + A2;           -- -5
+      when "0111" => result := A1 + A2 + A3;      -- -10
+      when "1000" => result := A0;                -- +7
+      when "1001" => result := A0 + A3;           -- +2
+      when "1010" => result := A0 + A2;           -- -1
+      when "1011" => result := A0 + A2 + A3;      -- -6
+      when "1100" => result := A0 + A1;           -- +10
+      when "1101" => result := A0 + A1 + A3;      -- +5
+      when "1110" => result := A0 + A1 + A2;      -- +2
+      when "1111" => result := A0 + A1 + A2 + A3; -- -3
+      when others => result := 0;
+    end case;
+    return to_signed(result, LUT_OUT_SIZE);
+  end function;
 
   -- ----------------- ROM Input and Output -------------------
   signal addr      : std_logic_vector(DEPTH-1 downto 0);      -- current input bits
@@ -155,19 +155,7 @@ begin
     (others => '0') when others;
 
   -- current bits drive the lut output
-  -- data_lut <= ROM(addr);
-  LUT_inst: entity work.LUT
-   generic map(
-      WIDTH => WIDTH,
-      A0 => TO_SIGNED(A0, WIDTH),
-      A1 => TO_SIGNED(A1, WIDTH),
-      A2 => TO_SIGNED(A2, WIDTH),
-      A3 => TO_SIGNED(A3, WIDTH)
-  )
-   port map(
-      ADDR_i => addr,
-      DATA_o => data_lut
-  );
+  data_lut <= ROM(addr);
 
   -- we use a dedicated signal here because the conversion from boolean to std_logic is bit complicated
   count_equ_3 <= '1' when count_p1 = MSB else
