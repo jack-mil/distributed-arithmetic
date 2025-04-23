@@ -1,5 +1,5 @@
 -- Engineer     : Jackson Miller
--- Date         : 04/11/2025
+-- Date         : 04/23/2025
 -- Name of file : da.vhd
 -- Description  : Implements a signed Distributed Arithmetic,
 --                with 4 signed input vectors. Inputs are of WIDTH bits
@@ -163,8 +163,8 @@ begin
         valid_p2 <= '0';
         acc_p2 <= (others => '0');
       else
-        valid_p2 <= '1' when index_odd = 1 else '0';
-        if (index_odd = MSB) then
+        valid_p2 <= '1' when index_even = 0 else '0';
+        if (index_odd = MSB) then -- or index_even = MSB-1
           acc_p2 <= resize(-lut_odd, acc_p2'length) + lut_even;  -- reverse sign for sign bit (MSB)
         else
           acc_p2 <= shift_left(acc_p2, 2) + lut_odd + lut_even;  -- 2BAAT requires left_shift << 2
