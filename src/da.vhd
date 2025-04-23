@@ -1,10 +1,11 @@
 -- Engineer     : Jackson Miller
 -- Date         : 04/11/2025
 -- Name of file : da.vhd
--- Description  : implements a signed Distributed Arithmetic,
+-- Description  : Implements a signed Distributed Arithmetic,
 --                with 4 signed input vectors. Inputs are of WIDTH bits
 --                Coefficients generics are specified as integers
---                but should fit in WIDTH bits
+--                but should fit in WIDTH bits.
+--                Performs 2-bits-at-a-time processing, with sample period 2 (latency 3)
 
 library ieee;
   use ieee.std_logic_1164.all;
@@ -73,11 +74,12 @@ architecture rtl of da is
   end function;
 
   -- ----------------- ROM Input and Output -------------------
-  signal addr      : std_logic_vector(DEPTH-1 downto 0);      -- current input bits
-  signal data_lut  : signed(LUT_OUT_SIZE-1 downto 0); -- look-up data
+  signal addr_even : std_logic_vector(DEPTH-1 downto 0); -- current input bits
+  signal addr_odd  : std_logic_vector(DEPTH-1 downto 0); -- current input bits
+  signal lut_even  : signed(LUT_OUT_SIZE-1 downto 0);    -- look-up data
+  signal lut_odd   : signed(LUT_OUT_SIZE downto 0);      -- intentionally 1 bit larger, for shift adjustment
 
-  -- ----------------- Define Pipeline Signals -----------------
-
+  -- ----------------- Pipeline Signals -----------------
   constant MSB : natural := WIDTH - 1;
 
   -- --------- Stage 1 --------
@@ -87,16 +89,16 @@ architecture rtl of da is
   signal data_3_p1 : signed(MSB downto 0) := (others => '0');
   signal valid_p1  : std_logic            := '0'; -- stage one data is valid
   signal stall_p1  : std_logic            := '0'; -- prevent more input while processing
-  signal count_p1  : natural range 0 to MSB := MSB; -- count N=WIDTH bits at a time
-
 
   -- --------- Stage 2 --------
-  signal acc_p2      : signed(DATA_OUT'range) := (others => '0'); -- output accumulator
-  signal valid_p2    : std_logic              := '0'; -- second stage (output) complete when '1'
+  signal index_odd   : natural range 1 to MSB   := MSB;   -- [3, 1]
+  signal index_even  : natural range 0 to MSB-1 := MSB-1; -- [2, 0]
+  signal acc_p2      : signed(DATA_OUT'range)   := (others => '0'); -- output accumulator
+  signal valid_p2    : std_logic                := '0'; -- second stage (output) complete when '1'
 
 begin
 
-  -- --------- Stage 1 --------
+  -- --------- Stage 1 (Input) ------------
   DATA_IN_p : process (CLK) is
   begin
     if rising_edge(CLK) then
@@ -114,28 +116,26 @@ begin
     end if;
   end process DATA_IN_p;
 
-  -- counter increments for every clock cycle data is valid
-  COUNT_BITS : process (CLK) is
+  -- Generate the index into input data (2-bits-at-a-time 2BAAT)
+  COUNT_INDEX : process (CLK) is
   begin
     if rising_edge(CLK) then
       if (RST = '1') then
-        count_p1 <= MSB;
-      elsif (valid_p1 = '1') then
-        if count_p1 = 0 then
-          count_p1 <= MSB;
-        else
-          count_p1 <= count_p1 - 1;
-        end if;
+        index_odd  <= MSB;
+        index_even <= MSB-1;
+      elsif (valid_p1='1') then
+        index_odd  <= MSB   when index_odd  = 1 else index_odd-2;
+        index_even <= MSB-1 when index_even = 0 else index_even-2;
       end if;
     end if;
-  end process COUNT_BITS;
+  end process COUNT_INDEX;
 
   -- prevent more input until N (4) cycles of valid data
-  GEN_STALL : process (valid_p1, count_p1)
+  GEN_STALL : process (valid_p1, index_even)
   begin
-    if count_p1 = 0 then -- finished
+    if index_even = 0 then -- finished
       stall_p1 <= '0';
-    elsif valid_p1='1' then -- starting
+    elsif (valid_p1='1') then -- starting
       stall_p1 <= '1';
     else
       stall_p1 <= '0';
@@ -145,10 +145,12 @@ begin
   -- --------- Stage 2 --------
 
   -- Generate the addr according to the current cycle
-  -- MSB is bit from data_0, LSB is bit from data_3
-  addr <= data_0_p1(count_p1) & data_1_p1(count_p1) & data_2_p1(count_p1) & data_3_p1(count_p1);
+  addr_odd  <= data_0_p1(index_odd)  & data_1_p1(index_odd)  & data_2_p1(index_odd)  & data_3_p1(index_odd);
+  addr_even <= data_0_p1(index_even) & data_1_p1(index_even) & data_2_p1(index_even) & data_3_p1(index_even);
+
   -- current bits drive the lut output
-  data_lut <= ROM(addr);
+  lut_odd  <= ROM(addr_odd) & '0'; -- left-shift by one (2x difference)
+  lut_even <= ROM(addr_even);
 
   -- Perform the shift and accumulate operation
   -- to generate the output signal
@@ -159,11 +161,11 @@ begin
         valid_p2 <= '0';
         acc_p2 <= (others => '0');
       else
-        valid_p2 <= '1' when count_p1 = 0 else '0';
-        if (count_p1 = MSB) then
-          acc_p2 <= resize(-data_lut, acc_p2'length);  -- reverse sign for sign bit (MSB)
+        valid_p2 <= '1' when index_odd = 1 else '0';
+        if (index_odd = MSB) then
+          acc_p2 <= resize(-lut_odd, acc_p2'length) + lut_even;  -- reverse sign for sign bit (MSB)
         else
-          acc_p2 <= shift_left(acc_p2, 1) + data_lut;  -- normal shift+accumulate for middle cycles
+          acc_p2 <= shift_left(acc_p2, 2) + lut_odd + lut_even;  -- 2BAAT requires left_shift << 2
         end if;
       end if;
     end if;

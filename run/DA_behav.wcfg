@@ -12,14 +12,19 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,585.404 ns"></ZoomEndTime>
-      <Cursor1Time time="0.000 ns"></Cursor1Time>
+      <ZoomEndTime time="659.001 ns"></ZoomEndTime>
+      <Cursor1Time time="30.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="96"></ValueColumnWidth>
+      <NameColumnWidth column_width="167"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="12" />
+   <WVObjectSize size="15" />
+   <wave_markers>
+      <marker time="110000" label="" />
+      <marker time="210000" label="" />
+      <marker time="170000" label="" />
+   </wave_markers>
    <wvobject fp_name="group72" type="group">
       <obj_property name="label">Interface</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -126,33 +131,49 @@
       <obj_property name="CustomSignalColor">#F0E68C</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/TB_DA/DUT/valid_p2" type="logic">
-      <obj_property name="ElementShortName">valid_p2</obj_property>
-      <obj_property name="ObjectShortName">valid_p2</obj_property>
-      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+   <wvobject fp_name="/TB_DA/DUT/index_odd" type="other">
+      <obj_property name="ElementShortName">index_odd</obj_property>
+      <obj_property name="ObjectShortName">index_odd</obj_property>
+      <obj_property name="CustomSignalColor">#00FF7F</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/TB_DA/DUT/count_p1" type="other">
-      <obj_property name="ElementShortName">count_p1</obj_property>
-      <obj_property name="ObjectShortName">count_p1</obj_property>
+   <wvobject fp_name="/TB_DA/DUT/index_even" type="other">
+      <obj_property name="ElementShortName">index_even</obj_property>
+      <obj_property name="ObjectShortName">index_even</obj_property>
    </wvobject>
-   <wvobject fp_name="/TB_DA/DUT/addr" type="array">
-      <obj_property name="ElementShortName">addr[3:0]</obj_property>
-      <obj_property name="ObjectShortName">addr[3:0]</obj_property>
+   <wvobject fp_name="/TB_DA/DUT/addr_odd" type="array">
+      <obj_property name="ElementShortName">addr_odd[3:0]</obj_property>
+      <obj_property name="ObjectShortName">addr_odd[3:0]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
-      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="CustomSignalColor">#00FF7F</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/TB_DA/DUT/data_lut" type="array">
-      <obj_property name="ElementShortName">data_lut[5:0]</obj_property>
-      <obj_property name="ObjectShortName">data_lut[5:0]</obj_property>
+   <wvobject fp_name="/TB_DA/DUT/addr_even" type="array">
+      <obj_property name="ElementShortName">addr_even[3:0]</obj_property>
+      <obj_property name="ObjectShortName">addr_even[3:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB_DA/DUT/lut_even" type="array">
+      <obj_property name="ElementShortName">lut_even[5:0]</obj_property>
+      <obj_property name="ObjectShortName">lut_even[5:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB_DA/DUT/lut_odd" type="array">
+      <obj_property name="ElementShortName">lut_odd[6:0]</obj_property>
+      <obj_property name="ObjectShortName">lut_odd[6:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#00FF7F</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/TB_DA/DUT/acc_p2" type="array">
       <obj_property name="ElementShortName">acc_p2[9:0]</obj_property>
       <obj_property name="ObjectShortName">acc_p2[9:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB_DA/DUT/valid_p2" type="logic">
+      <obj_property name="ElementShortName">valid_p2</obj_property>
+      <obj_property name="ObjectShortName">valid_p2</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
 </wave_config>
