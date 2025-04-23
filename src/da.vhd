@@ -87,13 +87,13 @@ architecture rtl of da is
   signal data_3_p1 : signed(MSB downto 0) := (others => '0');
   signal valid_p1  : std_logic            := '0'; -- stage one data is valid
   signal stall_p1  : std_logic            := '0'; -- prevent more input while processing
-  signal count_p1  : natural range 0 to MSB := 0; -- count N=WIDTH bits at a time
+  signal count_p1  : natural range 0 to MSB := MSB; -- count N=WIDTH bits at a time
 
 
   -- --------- Stage 2 --------
   signal acc_p2      : signed(DATA_OUT'range) := (others => '0'); -- output accumulator
   signal valid_p2    : std_logic              := '0'; -- second stage (output) complete when '1'
-  signal count_equ_3 : std_logic;                 -- internal flag
+  signal count_equ_0 : std_logic;                 -- internal flag
 
 begin
 
@@ -120,12 +120,12 @@ begin
   begin
     if rising_edge(CLK) then
       if (RST = '1') then
-        count_p1 <= 0;
+        count_p1 <= MSB;
       elsif (valid_p1 = '1') then
-        if count_p1 = MSB then
-          count_p1 <= 0;
+        if count_p1 = 0 then
+          count_p1 <= MSB;
         else
-          count_p1 <= count_p1 + 1;
+          count_p1 <= count_p1 - 1;
         end if;
       end if;
     end if;
@@ -134,7 +134,7 @@ begin
   -- prevent more input until N (4) cycles of valid data
   GEN_STALL : process (valid_p1, count_p1)
   begin
-    if count_p1 = MSB then -- finished
+    if count_p1 = 0 then -- finished
       stall_p1 <= '0';
     elsif valid_p1='1' then -- starting
       stall_p1 <= '1';
@@ -147,39 +147,28 @@ begin
 
   -- Generate the addr according to the current cycle
   -- MSB is bit from data_0, LSB is bit from data_3
-  with count_p1 select addr <=
-    data_0_p1(0) & data_1_p1(0) & data_2_p1(0) & data_3_p1(0) when 0,
-    data_0_p1(1) & data_1_p1(1) & data_2_p1(1) & data_3_p1(1) when 1,
-    data_0_p1(2) & data_1_p1(2) & data_2_p1(2) & data_3_p1(2) when 2,
-    data_0_p1(3) & data_1_p1(3) & data_2_p1(3) & data_3_p1(3) when 3,
-    (others => '0') when others;
-
+  addr <= data_0_p1(count_p1) & data_1_p1(count_p1) & data_2_p1(count_p1) & data_3_p1(count_p1);
   -- current bits drive the lut output
   data_lut <= ROM(addr);
 
   -- we use a dedicated signal here because the conversion from boolean to std_logic is bit complicated
-  count_equ_3 <= '1' when count_p1 = MSB else
+  count_equ_0 <= '1' when count_p1 = 0 else
                  '0';
 
   -- Perform the shift and accumulate operation
   -- to generate the output signal
   SHIFT_AND_SUM : process (CLK, RST) is
-    variable data_lut_shift : signed(acc_p2'range);
   begin
     if rising_edge(CLK) then
       if (RST = '1') then
         valid_p2 <= '0';
         acc_p2 <= (others => '0');
       else
-        valid_p2 <= count_equ_3;
-        data_lut_shift := resize(data_lut, data_lut_shift'length);
-        data_lut_shift := shift_left(data_lut_shift, count_p1);
-        if (count_p1 = 0) then
-          acc_p2 <= data_lut_shift; -- reset old data
-        elsif (count_p1 = MSB) then
-          acc_p2 <= acc_p2 - data_lut_shift; -- reverse sign of final sum
+        valid_p2 <= count_equ_0;
+        if (count_p1 = MSB) then
+          acc_p2 <= resize(-data_lut, acc_p2'length);  -- reverse sign for sign bit (MSB)
         else
-          acc_p2 <= acc_p2 + data_lut_shift; -- normal accumulate for middle cycles
+          acc_p2 <= shift_left(acc_p2, 1) + data_lut;  -- normal shift+accumulate for middle cycles
         end if;
       end if;
     end if;
