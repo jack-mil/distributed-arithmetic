@@ -93,7 +93,6 @@ architecture rtl of da is
   -- --------- Stage 2 --------
   signal acc_p2      : signed(DATA_OUT'range) := (others => '0'); -- output accumulator
   signal valid_p2    : std_logic              := '0'; -- second stage (output) complete when '1'
-  signal count_equ_0 : std_logic;                 -- internal flag
 
 begin
 
@@ -151,10 +150,6 @@ begin
   -- current bits drive the lut output
   data_lut <= ROM(addr);
 
-  -- we use a dedicated signal here because the conversion from boolean to std_logic is bit complicated
-  count_equ_0 <= '1' when count_p1 = 0 else
-                 '0';
-
   -- Perform the shift and accumulate operation
   -- to generate the output signal
   SHIFT_AND_SUM : process (CLK, RST) is
@@ -164,7 +159,7 @@ begin
         valid_p2 <= '0';
         acc_p2 <= (others => '0');
       else
-        valid_p2 <= count_equ_0;
+        valid_p2 <= '1' when count_p1 = 0 else '0';
         if (count_p1 = MSB) then
           acc_p2 <= resize(-data_lut, acc_p2'length);  -- reverse sign for sign bit (MSB)
         else
