@@ -17,11 +17,13 @@ entity da is
   generic (
     WIDTH : positive := 4; -- should be a power of 2 word-size (e.g. 4/8/16)
 
-    -- Filter coefficients. Identity filter by default (y[n]=x[n])
-    A0 : integer range -8 to 7 := 1; -- Coefficient 0
-    A1 : integer range -8 to 7 := 0; -- Coefficient 1
-    A2 : integer range -8 to 7 := 0; -- Coefficient 2
-    A3 : integer range -8 to 7 := 0  -- Coefficient 3
+    -- Filter coefficients. Would typically not have a default value.
+    -- These arbitrary values are chosen so synthesis of this entity 
+    -- in isolation (e.i. not used in a larger design) uses a relistic area
+    A0 : integer range -8 to 7 := 7; -- Coefficient 0
+    A1 : integer range -8 to 7 := 3; -- Coefficient 1
+    A2 : integer range -8 to 7 := -8;-- Coefficient 2
+    A3 : integer range -8 to 7 := -5 -- Coefficient 3
   );
   port (
     -- input side
